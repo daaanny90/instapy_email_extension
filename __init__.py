@@ -1,0 +1,1 @@
+from instapy_email_extension import instapyEmailExtension
