@@ -2,30 +2,41 @@ import smtplib
 from email.MIMEMultipart import MIMEMultipart
 from email.MIMEText import MIMEText
 
+#set your email account details and the email address where do you
+#want to receive the emails from InstaPy. You can write your email
+#address in both 'your_email_address' and 'target_email_address'. In
+#this case you will send yourself an email.
+
+your_email_address = "write your email address here"
+target_email_address = "write receiver email address here"
+password = "write your email account password here"
+
+### extension ###
+
 def gmail_send_err(e):
     s = str(e)
 
-    fromaddr = "YOUR_EMAIL"
-    toaddr = "YOUR_EMAIL"
+    fromaddr = your_email_address
+    toaddr = target_email_address
     msg = MIMEMultipart()
     msg['From'] = "InstaPy"
     msg['To'] = toaddr
-    msg['Subject'] = "Instapy encourred in a problem!"
+    msg['Subject'] = "InstaPy encourred in a problem!"
 
-    body = "There was a problem with instapy: " + str(e)
+    body = "There was a problem with InstaPy: " + str(e)
     msg.attach(MIMEText(body, 'plain'))
 
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.starttls()
-    server.login(fromaddr, "YOUR_PASSWORD")
+    server.login(fromaddr, password)
 
     text = msg.as_string()
     server.sendmail(fromaddr, toaddr, text)
     server.quit()
 
 def gmail_send_start():
-    fromaddr = "YOUR_EMAIL"
-    toaddr = "YOUR_EMAIL"
+    fromaddr = your_email_address
+    toaddr = target_email_address
     msg = MIMEMultipart()
     msg['From'] = "InstaPy"
     msg['To'] = toaddr
@@ -36,26 +47,26 @@ def gmail_send_start():
 
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.starttls()
-    server.login(fromaddr, "YOUR_PASSWORD")
+    server.login(fromaddr, password)
 
     text = msg.as_string()
     server.sendmail(fromaddr, toaddr, text)
     server.quit()
     
 def gmail_send_end():
-    fromaddr = "YOUR_EMAIL"
-    toaddr = "YOUR_EMAIL"
+    fromaddr = your_email_address
+    toaddr = target_email_address
     msg = MIMEMultipart()
     msg['From'] = "InstaPy"
     msg['To'] = toaddr
-    msg['Subject'] = "Instabot did the job!"
+    msg['Subject'] = "InstaPy did the job!"
 
     body = "InstaPy did everything, session ended."
     msg.attach(MIMEText(body, 'plain'))
 
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.starttls()
-    server.login(fromaddr, "YOUR_PASSWORD")
+    server.login(fromaddr, password)
 
     text = msg.as_string()
     server.sendmail(fromaddr, toaddr, text)
