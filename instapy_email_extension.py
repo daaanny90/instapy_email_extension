@@ -6,14 +6,19 @@ from email.MIMEText import MIMEText
 #want to receive the emails from InstaPy. You can write your email
 #address in both 'your_email_address' and 'target_email_address'. In
 #this case you will send yourself an email.
+#
+#See the readme fom more info about the SMTP Server
 
 your_email_address = "write your email address here"
 target_email_address = "write receiver email address here"
 password = "write your email account password here"
+smtp_server = "write the smpt server of your email"
+
 
 ### extension ###
 
-def gmail_send_err(e):
+#Gmail definitions
+def email_send_err(e):
     s = str(e)
 
     fromaddr = your_email_address
@@ -26,7 +31,7 @@ def gmail_send_err(e):
     body = "There was a problem with InstaPy: " + str(e)
     msg.attach(MIMEText(body, 'plain'))
 
-    server = smtplib.SMTP('smtp.gmail.com', 587)
+    server = smtplib.SMTP(smtp_server, 587)
     server.starttls()
     server.login(fromaddr, password)
 
@@ -34,7 +39,7 @@ def gmail_send_err(e):
     server.sendmail(fromaddr, toaddr, text)
     server.quit()
 
-def gmail_send_start():
+def email_send_start():
     fromaddr = your_email_address
     toaddr = target_email_address
     msg = MIMEMultipart()
@@ -45,7 +50,7 @@ def gmail_send_start():
     body = "InstaPy is starting!"
     msg.attach(MIMEText(body, 'plain'))
 
-    server = smtplib.SMTP('smtp.gmail.com', 587)
+    server = smtplib.SMTP(smtp_server, 587)
     server.starttls()
     server.login(fromaddr, password)
 
@@ -64,10 +69,12 @@ def gmail_send_end():
     body = "InstaPy did everything, session ended."
     msg.attach(MIMEText(body, 'plain'))
 
-    server = smtplib.SMTP('smtp.gmail.com', 587)
+    server = smtplib.SMTP(smtp_server, 587)
     server.starttls()
     server.login(fromaddr, password)
 
     text = msg.as_string()
     server.sendmail(fromaddr, toaddr, text)
     server.quit()
+    
+#Hotmail (Live) definitions
