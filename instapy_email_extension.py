@@ -17,48 +17,48 @@ smtp_server = "write the smpt server of your email"
 
 ### extension ###
 
-#Gmail definitions
-def email_send_err(e):
-    s = str(e)
+class instapyEmailExtension():
+    def email_send_err(e):
+        s = str(e)
 
-    fromaddr = your_email_address
-    toaddr = target_email_address
-    msg = MIMEMultipart()
-    msg['From'] = "InstaPy"
-    msg['To'] = toaddr
-    msg['Subject'] = "InstaPy encourred in a problem!"
+        fromaddr = your_email_address
+        toaddr = target_email_address
+        msg = MIMEMultipart()
+        msg['From'] = "InstaPy"
+        msg['To'] = toaddr
+        msg['Subject'] = "InstaPy encourred in a problem!"
 
-    body = "There was a problem with InstaPy: " + str(e)
-    msg.attach(MIMEText(body, 'plain'))
+        body = "There was a problem with InstaPy: " + str(e)
+        msg.attach(MIMEText(body, 'plain'))
 
-    server = smtplib.SMTP(smtp_server, 587)
-    server.starttls()
-    server.login(fromaddr, password)
+        server = smtplib.SMTP(smtp_server, 587)
+        server.starttls()
+        server.login(fromaddr, password)
 
-    text = msg.as_string()
-    server.sendmail(fromaddr, toaddr, text)
-    server.quit()
+        text = msg.as_string()
+        server.sendmail(fromaddr, toaddr, text)
+        server.quit()
 
-def email_send_start():
-    fromaddr = your_email_address
-    toaddr = target_email_address
-    msg = MIMEMultipart()
-    msg['From'] = "InstaPy"
-    msg['To'] = toaddr
-    msg['Subject'] = "InstaPy is starting!"
+    def email_send_start():
+        fromaddr = your_email_address
+        toaddr = target_email_address
+        msg = MIMEMultipart()
+        msg['From'] = "InstaPy"
+        msg['To'] = toaddr
+        msg['Subject'] = "InstaPy is starting!"
 
-    body = "InstaPy is starting!"
-    msg.attach(MIMEText(body, 'plain'))
+        body = "InstaPy is starting!"
+        msg.attach(MIMEText(body, 'plain'))
 
-    server = smtplib.SMTP(smtp_server, 587)
-    server.starttls()
-    server.login(fromaddr, password)
+        server = smtplib.SMTP(smtp_server, 587)
+        server.starttls()
+        server.login(fromaddr, password)
 
-    text = msg.as_string()
-    server.sendmail(fromaddr, toaddr, text)
-    server.quit()
-    
-def gmail_send_end():
+        text = msg.as_string()
+        server.sendmail(fromaddr, toaddr, text)
+        server.quit()
+
+    def gmail_send_end():
     fromaddr = your_email_address
     toaddr = target_email_address
     msg = MIMEMultipart()
