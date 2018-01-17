@@ -1,5 +1,5 @@
 from instapy import InstaPy
-from extension.instapy_email_extension import instapyEmailExtension
+from extensions.instapy_email_extension import instapyEmailExtension
 
 try:
 
